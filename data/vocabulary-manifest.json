@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "description": "Vocabulary-set manifest. Add future sets as separate JSON files under data/sets and register them here.",
+  "sets": [
+    {
+      "setId": "test-l-term1-w1",
+      "name": "Test-L Term 1 Week 1",
+      "file": "sets/test-l-term1-w1.json",
+      "week": "W1",
+      "wordCount": 80,
+      "coreCount": 15,
+      "expandedCount": 65
+    },
+    {
+      "setId": "test-l-term1-w2",
+      "name": "Test-L Term 1 Week 2",
+      "file": "sets/test-l-term1-w2.json",
+      "week": "W2",
+      "wordCount": 74,
+      "coreCount": 12,
+      "expandedCount": 62
+    },
+    {
+      "setId": "test-l-term1-w3",
+      "name": "Test-L Term 1 Week 3",
+      "file": "sets/test-l-term1-w3.json",
+      "week": "W3",
+      "wordCount": 89,
+      "coreCount": 13,
+      "expandedCount": 76
+    },
+    {
+      "setId": "test-l-term1-w4",
+      "name": "Test-L Term 1 Week 4",
+      "file": "sets/test-l-term1-w4.json",
+      "week": "W4",
+      "wordCount": 70,
+      "coreCount": 12,
+      "expandedCount": 58
+    },
+    {
+      "setId": "test-l-term1-w5",
+      "name": "Test-L Term 1 Week 5",
+      "file": "sets/test-l-term1-w5.json",
+      "week": "W5",
+      "wordCount": 93,
+      "coreCount": 11,
+      "expandedCount": 82
+    }
+  ]
+}
