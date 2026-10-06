@@ -84,23 +84,30 @@ The initial source files are:
 
 ### Adding a new vocabulary set
 
-Do not edit a giant hard-coded `WORDS` array as the long-term workflow.
+The full import contract, field definitions, naming examples, deduplication
+rules, and current publishing limitation are documented in
+`docs/ADDING_VOCABULARY.md`.
+
+Do not edit a giant hard-coded `WORDS` array as the long-term workflow. The
+schema version 1 source of truth is the set files plus the manifest. The
+current app still embeds a runtime snapshot, so source import and website
+publication are separate steps until a manifest loader or generator is
+implemented.
 
 For each new week or source set:
 
 1.  Create a new JSON file under `data/sets/`.
-2.  Give it a stable `setId`, display `name`, week/term metadata, and
-    `words`.
-3.  For each word, preserve a stable ID, spelling, meaning,
-    synonyms/antonyms, example, source week, and whether it is `core`.
-4.  Prefer richer provenance over a vague source flag. Future entries
-    should support `sourceTypes` such as `assigned-vocabulary`,
-    `synonym-target`, `synonym-answer-choice`, `antonym`,
-    `sentence-completion`, `analogy`, and `reading-vocabulary`.
+2.  Give it a stable `setId`, display `name`, scope metadata, and `words`.
+3.  For each word, preserve a globally unique stable ID, spelling, meaning,
+    synonym, antonym, example, scope key, `core` status, and origin.
+4.  Use a stable origin slug and preserve richer provenance in import notes
+    until the schema supports it directly.
 5.  Register the new set in `data/vocabulary-manifest.json`.
-6.  Deduplicate against existing vocabulary by normalized spelling while
-    preserving source membership/provenance.
-7.  Regenerate/validate the application corpus.
+6.  Deduplicate against existing vocabulary by normalized spelling. Schema
+    version 1 does not yet model cross-set membership, so do not create
+    conflicting duplicate records.
+7.  Validate the source corpus, then deliberately synchronize the live app
+    if the set is meant to be published.
 8.  Run checks for duplicate IDs/words, missing definitions, invalid
     week/set references, and core/expanded counts.
 
@@ -123,6 +130,10 @@ A future normalized record should move toward:
   confusable: []
 }
 ```
+
+The normalized record above is a future direction, not the schema accepted
+by the current app. Use the exact schema version 1 fields documented in
+`docs/ADDING_VOCABULARY.md` for imports today.
 
 The current extracted records are preserved as-is where possible; do not
 casually rewrite definitions or provenance during code refactors.
